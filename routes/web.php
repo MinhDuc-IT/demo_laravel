@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthController;
 
 // Route home
 // Ví dụ về named route: đặt tên route bằng ->name('home')
@@ -12,19 +14,13 @@ Route::get('/', function () {
 // Nhóm route product
 Route::prefix('product')->group(function () {
     // Route danh sách sản phẩm
-    Route::get('/', function () {
-        return view('product.index');
-    })->name('product.index');
+    Route::get('/', [ProductController::class, 'index'])->name('product.index');
     
     // Route form thêm mới sản phẩm
-    Route::get('/add', function () {
-        return view('product.add');
-    })->name('product.add');
+    Route::get('/add', [ProductController::class, 'add'])->name('product.add');
     
     // Route chi tiết sản phẩm với id mặc định
-    Route::get('/{id}', function ($id = '123') {
-        return view('product.show', ['id' => $id]);
-    })->where('id', '[a-zA-Z0-9]+')->name('product.show');
+    Route::get('/{id}', [ProductController::class, 'show'])->where('id', '[a-zA-Z0-9]+')->name('product.show');
 });
 
 // Route sinh viên với giá trị mặc định
@@ -41,3 +37,11 @@ Route::get('/sinhvien/{name?}/{mssv?}', function ($name = 'Luong Xuan Hieu', $ms
 Route::get('/banco/{n}', function ($n) {
     return view('banco', ['n' => (int)$n]);
 })->where('n', '[0-9]+')->name('banco');
+
+// Route login
+Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'checkLogin'])->name('auth.checkLogin');
+
+// Route signup
+Route::get('/signup', [AuthController::class, 'signup'])->name('auth.signup');
+Route::post('/signup', [AuthController::class, 'checkSignup'])->name('auth.checkSignup');
