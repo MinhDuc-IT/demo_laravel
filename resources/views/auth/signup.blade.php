@@ -85,10 +85,30 @@
             <input type="password" name="password">
         </div>
 
+        <div class="form-group">
+            <label>Repass</label>
+            <input type="password" name="repass">
+        </div>
+
+        <div class="form-group">
+            <label>Mssv</label>
+            <input type="text" name="mssv">
+        </div>
+
+        <div class="form-group">
+            <label>Class</label>
+            <input type="text" name="class">
+        </div>
+
+        <div class="form-group">
+            <label>Gender</label>
+            <input type="text" name="gender">
+        </div>
+
         <button type="submit">Signup</button>
     </form>
 
-    <a href="{{ route('auth.login') }}" class="nav-link">← Đã có tài khoản? Đăng nhập</a>
+    <a href="{{ route('auth.signin') }}" class="nav-link">← Đã có tài khoản? Đăng nhập</a>
 </div>
 </body>
 </html>

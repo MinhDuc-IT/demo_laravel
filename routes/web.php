@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\CheckTimeAccess;
 
 // Route home
 // Ví dụ về named route: đặt tên route bằng ->name('home')
@@ -12,7 +13,7 @@ Route::get('/', function () {
 })->name('home');
 
 // Nhóm route product
-Route::prefix('product')->group(function () {
+Route::prefix('product')->middleware(CheckTimeAccess::class)->group(function () {
     // Route danh sách sản phẩm
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
     
@@ -39,8 +40,8 @@ Route::get('/banco/{n}', function ($n) {
 })->where('n', '[0-9]+')->name('banco');
 
 // Route login
-Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
-Route::post('/login', [AuthController::class, 'checkLogin'])->name('auth.checkLogin');
+Route::get('/signin', [AuthController::class, 'signin'])->name('auth.signin');
+Route::post('/signin', [AuthController::class, 'checkSignin'])->name('auth.checkSignin');
 
 // Route signup
 Route::get('/signup', [AuthController::class, 'signup'])->name('auth.signup');

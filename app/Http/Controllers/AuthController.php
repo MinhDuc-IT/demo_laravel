@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function login(){
-        return view('auth.login');
+    public function signin(){
+        return view('auth.signin');
     }
     
-    public function checkLogin(Request $request) {
-        if($request->input('username') == 'ducnm' && $request->input('password') == '0309767'){
-            return "login successfully";
+    public function checkSignin(Request $request) {
+        if($request->input('username') == 'ducnm' && $request->input('password') == '123' && $request->input('repass') == '123' && $request->input('mssv') == '0309767' && $request->input('class') == '67PM1' && $request->input('gender') == 'Male'){
+            return "signin successfully";
         } else {
-            return "failed";
+            return "signin failed";
         }
     }
 
@@ -23,10 +23,10 @@ class AuthController extends Controller
     }
 
     public function checkSignup(Request $request) {
-        if ($request->filled('username') && $request->filled('password')) {
+        if ($request->filled('username') && $request->filled('password') && $request->filled('repass') && $request->input('password') == $request->input('repass') && $request->filled('mssv') && $request->filled('class') && $request->filled('gender')) {
             return "signup successfully";
         } else {
-            return "failed";
+            return "signup failed";
         }
     }
 }

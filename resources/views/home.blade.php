@@ -45,7 +45,7 @@
         <h1>Chào mừng đến với trang chủ</h1>
         <div class="nav-links">
             <a href="{{ route('home') }}">Trang chủ</a>
-            <a href="{{ route('auth.login') }}">Đăng nhập</a>
+            <a href="{{ route('auth.signin') }}">Đăng nhập</a>
             <a href="{{ route('product.index') }}">Sản phẩm</a>
             <a href="{{ route('sinhvien') }}">Sinh viên</a>
             <a href="{{ route('banco', ['n' => 8]) }}">Bàn cờ vua</a>

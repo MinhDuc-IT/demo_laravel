@@ -76,9 +76,9 @@
 </head>
 <body>
 <div class="container">
-    <h1>Login</h1>
+    <h1>Signin</h1>
 
-    <form action="{{ route('auth.checkLogin') }}" method="POST">
+    <form action="{{ route('auth.checkSignin') }}" method="POST">
         @csrf
 
         <div class="form-group">
@@ -91,7 +91,27 @@
             <input type="password" name="password">
         </div>
 
-        <button type="submit">Login</button>
+        <div class="form-group">
+            <label>Repass</label>
+            <input type="password" name="repass">
+        </div>
+
+        <div class="form-group">
+            <label>Mssv</label>
+            <input type="text" name="mssv">
+        </div>
+
+        <div class="form-group">
+            <label>Class</label>
+            <input type="text" name="class">
+        </div>
+
+        <div class="form-group">
+            <label>Gender</label>
+            <input type="text" name="gender">
+        </div>
+
+        <button type="submit">Signin</button>
     </form>
     <div class="nav-links">
         <a href="{{ route('home') }}" class="nav-link">← Về trang chủ</a>
