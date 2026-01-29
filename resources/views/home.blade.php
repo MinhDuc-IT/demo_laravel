@@ -43,8 +43,21 @@
 <body>
     <div class="container">
         <h1>Chào mừng đến với trang chủ</h1>
+        
+        <!-- @if(session('age'))
+            <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                <strong>Thông báo:</strong> Bạn đã nhập tuổi: {{ session('age') }} tuổi. 
+                @if(session('age') >= 18)
+                    <span style="color: #28a745;">Đủ tuổi truy cập!</span>
+                @else
+                    <span style="color: #dc3545;">Chưa đủ tuổi truy cập!</span>
+                @endif
+            </div>
+        @endif -->
+        
         <div class="nav-links">
             <a href="{{ route('home') }}">Trang chủ</a>
+            <a href="{{ route('age.index') }}">Nhập tuổi</a>
             <a href="{{ route('auth.signin') }}">Đăng nhập</a>
             <a href="{{ route('product.index') }}">Sản phẩm</a>
             <a href="{{ route('sinhvien') }}">Sinh viên</a>

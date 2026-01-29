@@ -79,10 +79,24 @@
     <div class="container">
         <h1>Danh sách sản phẩm</h1>
         
+        @if(session('age_check'))
+            <div style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                <strong>Thông báo:</strong> {{ session('age_check') }}
+            </div>
+        @endif
+        
         <a href="{{ route('product.add') }}" class="btn-add-product">+ Thêm mới sản phẩm</a>
         
         <div class="product-list">
+            @foreach ($products as $product)
             <div class="product-card">
+                <h3>{{ $product->name }}</h3>
+                <p>{{ $product->description }}</p>
+                <div class="product-price">{{ $product->price }} đ</div>
+            </div>
+            @endforeach
+
+            <!-- <div class="product-card">
                 <h3>Laptop Dell XPS 15</h3>
                 <p>Laptop cao cấp với màn hình 15 inch, CPU Intel i7, RAM 16GB</p>
                 <div class="product-price">25.000.000 đ</div>
@@ -116,7 +130,7 @@
                 <h3>iPad Air 5</h3>
                 <p>Tablet Apple với chip M1, màn hình 10.9 inch</p>
                 <div class="product-price">18.000.000 đ</div>
-            </div>
+            </div> -->
         </div>
         
         <a href="{{ route('home') }}" class="nav-link">← Về trang chủ</a>

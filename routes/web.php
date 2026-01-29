@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\CheckTimeAccess;
+use App\Http\Middleware\CheckAge;
 
 // Route home
 // Ví dụ về named route: đặt tên route bằng ->name('home')
@@ -12,8 +13,20 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-// Nhóm route product
-Route::prefix('product')->middleware(CheckTimeAccess::class)->group(function () {
+// Route hiển thị form nhập tuổi
+Route::get('/age', function () {
+    return view('age');
+})->name('age.index');
+
+// Route lưu tuổi vào session
+Route::post('/age', function () {
+    $age = request()->input('age');
+    session(['age' => $age]);
+    return redirect()->route('age.index')->with('success', 'Tuổi đã được lưu!');
+})->name('age.store');
+
+// Nhóm route product - áp dụng middleware kiểm tra tuổi
+Route::prefix('product')->middleware([CheckAge::class])->group(function () {
     // Route danh sách sản phẩm
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
     
